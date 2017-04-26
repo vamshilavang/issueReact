@@ -23,6 +23,7 @@ export default class eMenu extends Component {
         this.events.eMenuOnsave = this.eMenuOnsave.bind(this);
         this.events.eMenuSelect = this.eMenuSelect.bind(this);
         //this.events.handleChange = this.handleChange.bind(this);
+        this.getDealerproduct = this.getDealerproduct.bind(this);
         this.getMappedRequiredField = this.getMappedRequiredField.bind(this);
         this.getRenderdataFields = this.getRenderdataFields.bind(this);
         this.createReqFieldResponse = this.createReqFieldResponse.bind(this);
@@ -31,11 +32,7 @@ export default class eMenu extends Component {
 
     //  componentDidMount() {
     //    //console.log(HttpHelper("https://jsonplaceholder.typicode.com/posts/1",'get'))
-    //    HttpHelper('http://192.168.17.32:6100/api/deal/v1/dealer-products/', 'get').then(function (data) {
-    //      this.state.dealerProduct = data;
-    //      this.state.responseTosend = this.createReqFieldResponse();
-    //      this.createRequestdataTosend();
-    //    }.bind(this));/** Uncomment it and fetch the dealer product */
+    //    this.getDealerproduct();
     //    //this.state.dealerProduct = require('../../mockAPI/dealerProducts.json');
     //
     //    // plz fetch SendRequestToBE
@@ -66,6 +63,13 @@ export default class eMenu extends Component {
 
     }
 
+    getDealerproduct(){
+        HttpHelper('http://192.168.17.32:6100/api/deal/v1/dealer-products/', 'get').then(function (data) {
+            this.state.dealerProduct = data;
+            this.state.responseTosend = this.createReqFieldResponse();
+            this.createRequestdataTosend();
+        }.bind(this));
+    }
 
 
     createRequestdataTosend(){
@@ -84,7 +88,7 @@ export default class eMenu extends Component {
         dataTosend["KeyData"] = {"ClientId": "DEM", "ClientDealerId": this.state.dealerProduct.results[0].dealer_id,
             "DTDealerId": this.state.dealerProduct.results[0].dealer_id, "RequestDate": "\/Date(1472097614353)\/"};
 
-        dataTosend["Vehicle"] =  { "BookType": "1",  "Type": "1" };
+        dataTosend["Vehicle"] =  { "BookType": "2",  "Type": "1" }; //type will be fetch url N=1 else 2 certified_used key
         dataTosend["Finance"] = { "DealType": "1"};
 
         debugger;
@@ -185,6 +189,10 @@ export default class eMenu extends Component {
 
     eMenuOnsave() {
         this.setState({ "saveEMenu": false });
+        HttpHelper('http://10.117.36.20:6126/api/deal/v1/deal-jackets/310200000000000502/deals/310200000000000502/required-fields/',
+            'post',this.state.reqFieldResponseUI).then(function (data) {
+
+        }.bind(this));
         //let data = HttpHelper('https://jsonplaceholder.typicode.com/posts/1','get')
     }
 
@@ -198,13 +206,13 @@ export default class eMenu extends Component {
             <div>
                 {this.state.reqFieldResponseUI ?
 
-                      <RequireProvider header='eMenu' IsEdit={this.state.saveEMenu} data={this.state.reqFieldResponseUI} events={this.events} />
-                     :
+                    <RequireProvider header='eMenu' IsEdit={this.state.saveEMenu} data={this.state.reqFieldResponseUI} events={this.events} />
+                    :
                     null}
-              <TermRate events={this.events.eMenuOnsave}/>
+                <TermRate events={this.events.eMenuOnsave}/>
                 {!this.state.saveEMenu?
 
-                      <ProductHeading/>
+                    <ProductHeading/>
                     :null}
             </div>
         );
