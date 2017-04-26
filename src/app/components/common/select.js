@@ -2,7 +2,7 @@ import React from 'react';
 
 const Select = (props) => {
     return (
-        <div className="r-small-bottom-margin">
+        <div className="r-small-bottom-margin" style={{marginTop:'-10px'}}>
             <select className="form-control" style={{width:'auto'}}  value={props.data.Value}
             onChange={(event)=>props.events(props.clientProductId,props.clientProductId+"-"+props.qId,props.categoryName,event,props.caption)} >
                 {

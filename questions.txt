@@ -21,5 +21,23 @@ GET: http://10.117.36.20:6126/api/deal/v1/deal-jackets/310200000000000502/deals/
 POST: http://10.117.36.20:6126/api/deal/v1/deal-jackets/310200000000000502/deals/310200000000000502/required-fields/
 
 for saving the data when we click on get rates the data should be saved. updated json should be in mock api
-texbox field if the field values are empty array.
+textbox field if the field values are empty array.
 error msg
+
+
+RETL = 1 Lease = 2 Balloon = 3 Cash = 4
+
+
+DealType - http://10.117.36.20:6110/api/mobile/v1/deal/deal-jackets/310200000002397200/deals/310200000002397201/vehicle/
+
+{ "count": 1, "next": null, "results": [ { "vehicle_id": 310200000002395202, "certified_used": "N", "chrome_make": "Acura", "vin": null, "model_number": "Sedan", "odometer": 500, "stock_no": null, "chrome_year": 2017, "chrome_trim": "Sedan", "chrome_style_id": null, "chrome_model": "ILX" } ], "previous": null }
+
+DealType vale ---
+
+use finance_method
+
+http://sfidsvl001.devtest1.qts.fni:6125/api/deal/v1/deal-jackets/310200000002513901/deals/310200000002513902/deal-finance-summary/
+
+RETL = 1 Lease = 2 Balloon = 3 Cash = 4
+
+{ "monthly_payment": 659.56, "total_down_payment": 0, "apr": 4.15, "annual_miles": null, "money_factor": null, "cash_down_amount": 0, "selling_price": 37000, "days_to_first_payment": "45", "term": 60, "rebate_amount": 3000, "finance_method": "RETL", "amount_financed": 35682.33, "residual_percentage": null }
