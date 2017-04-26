@@ -1,4 +1,5 @@
 import React, { Component } from 'react';
+
 class PlanOption extends Component {
   constructor() {
     super();
@@ -30,6 +31,8 @@ class PlanOption extends Component {
       return (
          <div>
           {this.rendorPlan([{title: 'PLATINUM'}, {title: 'GOLD'}, {title: 'SILVER'},{title: 'BASIC'}])}
+          <hr/>
+           <button className="btn btn-primary pull-right p-btn">presentation mode</button>
          </div>
           )
           }
