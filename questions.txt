@@ -1,0 +1,25 @@
+calender- futu data is disabled and user enters also show error msg date should be less than todays date
+"ClientProductId": null,
+      "Errors": [],
+      "Fields": [
+        {
+          "Caption": "Amount Financed",
+          "Category": "Financing",
+          "Comment": "",
+          "ControlType": "Textbox",
+          "DataType": "Numeric",
+          "FieldValues": [],
+          "MaxLength": "11",
+          "MaxValue": "99999999.99",
+          "MinValue": "0",
+          "Name": "amount_financed",
+          "Required": "Y",
+          "Value": null
+
+          3)	Required Fields
+GET: http://10.117.36.20:6126/api/deal/v1/deal-jackets/310200000000000502/deals/310200000000000502/required-fields
+POST: http://10.117.36.20:6126/api/deal/v1/deal-jackets/310200000000000502/deals/310200000000000502/required-fields/
+
+for saving the data when we click on get rates the data should be saved. updated json should be in mock api
+texbox field if the field values are empty array.
+error msg
