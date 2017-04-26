@@ -89,14 +89,14 @@ export default class eMenu extends Component {
         let dataTosend = {};
         dataTosend["KeyData"] = {"ClientId": "DEM", "ClientDealerId": this.state.dealerProduct.results[0].dealer_id,
             "DTDealerId": this.state.dealerProduct.results[0].dealer_id, "RequestDate": "\/Date(1472097614353)\/"};
-        HttpHelper('http://10.117.36.20:6110/api/mobile/v1/deal/deal-jackets/310200000002397200/deals/310200000002397201/vehicle/', 'post', this.state.responseTosend).then(function (data) {
+        HttpHelper('http://10.117.36.20:6110/api/mobile/v1/deal/deal-jackets/310200000002397200/deals/310200000002397201/vehicle/', 'get').then(function (data) {
             dataTosend["Vehicle"] =  { "BookType": "2",  "Type": data.certified_used == 'N'?1:2 };
             this.returnRequiredFieldResponse(this.fetchDealtype(dataTosend))
         }.bind(this));
     }
 
     fetchDealtype(dataTosend){
-        HttpHelper('http://sfidsvl001.devtest1.qts.fni:6125/api/deal/v1/deal-jackets/310200000002513901/deals/310200000002513902/deal-finance-summary/', 'post', this.state.responseTosend).then(function (data) {
+        HttpHelper('http://sfidsvl001.devtest1.qts.fni:6125/api/deal/v1/deal-jackets/310200000002513901/deals/310200000002513902/deal-finance-summary/', 'get').then(function (data) {
             if(data.finance_method == 'RETL')
             dataTosend["Finance"] = { "DealType": "1"};
             else if(data.finance_method == 'Lease'){
