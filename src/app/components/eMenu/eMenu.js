@@ -146,8 +146,8 @@ export default class eMenu extends Component {
                     //     mappedData.push(childitem);
                     // }
                     //comment for API
-                    childitem['ClientProductId'] = "123"+idx;
-                    if (('VSC' == childitem['ProductTypeCode'])
+                    childitem['ClientProductId'] = item['product_id']
+                    if ((item['category_code'] == childitem['ProductTypeCode'])
                         && (item['provider_code'] == childitem['ProviderId'])) {
                         mappedData.push(childitem);
                     }
