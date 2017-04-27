@@ -89,10 +89,11 @@ export default class eMenu extends Component {
         let dataTosend = {};
         dataTosend["KeyData"] = {"ClientId": "DEM", "ClientDealerId": this.state.dealerProduct.results[0].dealer_id,
             "DTDealerId": this.state.dealerProduct.results[0].dealer_id, "RequestDate": "\/Date(1472097614353)\/"};
-        HttpHelper('http://10.117.36.20:6110/api/mobile/v1/deal/deal-jackets/310200000002397200/deals/310200000002397201/vehicle/', 'get').then(function (data) {
-            dataTosend["Vehicle"] =  { "BookType": "2",  "Type": data.certified_used == 'N'?1:2 };
-            this.returnRequiredFieldResponse(this.fetchDealtype(dataTosend))
-        }.bind(this));
+        // HttpHelper('http://10.117.36.20:6110/api/mobile/v1/deal/deal-jackets/310200000002397200/deals/310200000002397201/vehicle/', 'get').then(function (data) {
+        //     dataTosend["Vehicle"] =  { "BookType": "2",  "Type": data.certified_used == 'N'?1:2 };
+        //     this.returnRequiredFieldResponse(this.fetchDealtype(dataTosend))
+        // }.bind(this));
+        dataTosend["Vehicle"] =  { "BookType": "2",  "Type": "1" };
     }
 
     fetchDealtype(dataTosend){
