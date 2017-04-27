@@ -10,9 +10,9 @@ const Question = (props) => {
 
     return (
         <div>
-            {props.data.FieldValues != undefined ?
-                <span>
-                    <div>{props.data.Caption}</div>
+
+                <span>  {(props.data.FieldValues != undefined && props.data.FieldValues.length >0)||props.data.ControlType == 'Textbox' ?
+                    <div>{props.data.Caption}</div>:null}
                     <form>
                         <div className="radio" style={{ marginTop: '0px' }}>
                             <div className="control-group" style={{ padding: '0px' }}>
@@ -25,16 +25,16 @@ const Question = (props) => {
 
 
                                 }
-                                {props.data.FieldValues != undefined && props.data.FieldValues.length == 0?
+                                {props.data.ControlType == 'Textbox'?
                                     <TextBox data={props.data} categoryName={props.categoryName} caption={props.data.Caption}
                                              clientProductId={props.clientproductId} qId={props.qId} events={props.events.eMenuOptionselect}/>:null
                                 }
                             </div>
                         </div>
                     </form>
-                </span> : null}
+                </span>
         </div>
     )
 }
 
-export default Question;    
+export default Question;
