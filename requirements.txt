@@ -1,0 +1,7 @@
+Required Y/N logic should be removed
+ignoring vehcile should removed
+In this url response http://10.117.18.27:6220/Rating/RatingRESTAPI/json/requiredfields_json 
+
+check 1st - UI render should happen only on the field called displayUI and for questions which are not displayed the value should be picked from http://10.117.36.20:6110/api/mobile/v1/deal/deal-jackets/310200000002397200/deals/310200000002397201/vehicle/ or 
+http://sfidsvl001.devtest1.qts.fni:6125/api/deal/v1/deal-jackets/310200000002513901/deals/310200000002513902/deal-finance-summary/.
+The question which are not shown and value is N/A then directly save that value in DB
