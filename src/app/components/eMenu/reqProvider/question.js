@@ -6,11 +6,11 @@ import Select from '../../common/select'
 
 const Question = (props) => {
     console.log("choices");
+    if(props.data.FieldValues != undefined && props.data.FieldValues.length > 0){
+
     return (
-        <div>
-            {props.data.FieldValues != undefined && props.data.FieldValues.length > 0 ?
-                <span>
-                    <div>{props.data.Caption}</div>
+                <div>
+                    <span>{props.data.Caption}</span>
                     <form>
                         <div className="radio" style={{ marginTop: '0px' }}>
                             <div className="control-group" style={{ padding: '0px' }}>
@@ -22,9 +22,10 @@ const Question = (props) => {
                             </div>
                         </div>
                     </form>
-                </span> : null}
-        </div>
-    )
+                </div>
+    )}else{
+      return null;
+    }
 }
 
-export default Question;    
+export default Question;

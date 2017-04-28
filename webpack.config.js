@@ -12,6 +12,9 @@ var config = {
 		filename:"bundle.js",
 		publicPath:"/app"
 	},
+	devServer:{
+		port: 6125
+	},
 	module:{
 		loaders:[
 		{
@@ -27,4 +30,4 @@ var config = {
 	}
 }
 
-module.exports= config
+module.exports= config;
