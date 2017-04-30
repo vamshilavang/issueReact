@@ -39,7 +39,8 @@
           "MinValue": "",
           "Name": "deal_type",
           "Required": "Y",
-          "Value": ""
+          "Value": "",
+          "displayUI":true
         },
         {
           "Caption": "Amount Financed",
@@ -53,7 +54,24 @@
           "MinValue": "0",
           "Name": "amount_financed",
           "Required": "Y",
-          "Value": ""
+          "Value": "",
+          "displayUI":true
+        },
+
+        {
+          "Caption": "Amount Financed Calender",
+          "Category": "Financing",
+          "Comment": "",
+          "ControlType": "Calender",
+          "DataType": "Numeric",
+          "FieldValues": [],
+          "MaxLength": "11",
+          "MaxValue": "99999999.99",
+          "MinValue": "0",
+          "Name": "amount_financed",
+          "Required": "Y",
+          "Value": "",
+          "displayUI":true
         },
         {
           "Caption": "",
@@ -68,6 +86,7 @@
           "Name": "vin",
           "Required": "N",
           "Value": null,
+          "displayUI":true
 
         },
         {
@@ -82,7 +101,8 @@
           "MinValue": "",
           "Name": "odometer",
           "Required": "Y",
-          "Value": null
+          "Value": null,
+          "displayUI":true
         },
         {
           "Caption": "",
@@ -96,7 +116,8 @@
           "MinValue": "",
           "Name": "year",
           "Required": "Y",
-          "Value": null
+          "Value": null,
+          "displayUI":true
 
         },
         {
@@ -124,7 +145,8 @@
           "MinValue": "",
           "Name": "usage",
           "Required": "Y",
-          "Value": null
+          "Value": null,
+          "displayUI":true
         },
         {
           "Caption": "",
@@ -138,7 +160,8 @@
           "MinValue": "",
           "Name": "model",
           "Required": "Y",
-          "Value": null
+          "Value": null,
+          "displayUI":true
         },
         {
           "Caption": "",
@@ -152,7 +175,8 @@
           "MinValue": "",
           "Name": "provider_dealer_id",
           "Required": "Y",
-          "Value": null
+          "Value": null,
+          "displayUI":true
         },
         {
           "Caption": "",
@@ -175,7 +199,8 @@
           "MinValue": "",
           "Name": "type",
           "Required": "Y",
-          "Value": null
+          "Value": null,
+          "displayUI":true
         },
         {
           "Caption": "Book Type",
@@ -202,7 +227,8 @@
           "MinValue": "",
           "Name": "book_type",
           "Required": "Y",
-          "Value": 30
+          "Value": 30,
+          "displayUI":true
         },
         {
           "Caption": "",
@@ -216,7 +242,8 @@
           "MinValue": "",
           "Name": "make",
           "Required": "Y",
-          "Value":30
+          "Value":30,
+          "displayUI":true
         }
       ],
       "ProductTypeCode": "AP",
@@ -234,6 +261,4 @@
     "RequestDate": "/Date(1492796848234-0400)/"
   }
 }
-DisplayUI":"YES/NO",
 
-	       "MappingField":[{categoryType:'finance', value:'amount_financed'}]
