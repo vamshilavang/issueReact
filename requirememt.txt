@@ -1,0 +1,8 @@
+When we are clicking on get Rate button , unsaved question should show warning .
+user will be in the save view until he answer all question
+
+displayui key should be added in reqFieldresponse,json having value - True / False
+Required Y/N are removed now , remove vechile check also
+
+sendrequestTobe json in keydata Date should be today date
+

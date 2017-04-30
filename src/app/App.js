@@ -1,9 +1,13 @@
 import React, { Component } from 'react';
 import { Provider } from 'react-redux';
-import { createStore } from 'redux';
-import reducers from './createStore';
-import Emenu from './components/eMenu/eMenu';
-const store = createStore(reducers);
+import dummyView from './actions/requiredProviderAction'
+import configureStore from './createStore/createStore';
+import RequireProvider from './components/eMenu/reqProviderView/index';
+//import Emenu from './components/eMenu/eMenu';
+
+
+const store = configureStore();
+store.dispatch(dummyView())
 
 class App extends Component {
   render() {
@@ -11,7 +15,7 @@ class App extends Component {
     	<Provider store={store}>
 	      <div>
 	        <div className="container">
-	          <Emenu />
+	          <RequireProvider />
 	        </div>
 	      </div>
 	    </Provider>

@@ -67,7 +67,7 @@
           "MinValue": "",
           "Name": "vin",
           "Required": "N",
-          "Value": null,
+          "Value": null
 
         },
         {
@@ -234,6 +234,3 @@
     "RequestDate": "/Date(1492796848234-0400)/"
   }
 }
-DisplayUI":"YES/NO",
-
-	       "MappingField":[{categoryType:'finance', value:'amount_financed'}]

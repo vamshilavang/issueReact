@@ -2,7 +2,7 @@ import React, { Component } from 'react';
 import _ from 'underscore';
 
 import HttpHelper from '../../Helper/httpHelper';
-import RequireProvider from './reqProvider/requiredField';
+import RequireProvider from './reqProviderView/requiredProvider';
 import TermRate from './termAndRateOption/termRate';
 import ProductHeading from './productView/productHeading';
 
@@ -32,38 +32,38 @@ export default class eMenu extends Component {
         this.createRequestdataTosend = this.createRequestdataTosend.bind(this);
     }
 
-     componentDidMount() {
-       //console.log(HttpHelper("https://jsonplaceholder.typicode.com/posts/1",'get'))
-       this.getDealerproduct();
-       //this.state.dealerProduct = require('../../mockAPI/dealerProducts.json');
-
-       // plz fetch SendRequestToBE
-       //this.state.responseTomap = require('../../mockAPI/SendRequestToBE.json');
-
-       //let mapppedval = _.omit(this.data.responseTomap,'Vehicle');
-
-
-       //this.state.reqFieldResponseUI = require('../../mockAPI/reqFieldResponseUI.json');
-    /**uncomment it to fetch data from server for reqFieldResponseUI */
-
-     }
-
-    // componentDidMount() {
-    //     //console.log(HttpHelper("https://jsonplaceholder.typicode.com/posts/1",'get'))
+    //  componentDidMount() {
+    //    //console.log(HttpHelper("https://jsonplaceholder.typicode.com/posts/1",'get'))
+    //    this.getDealerproduct();
+    //    //this.state.dealerProduct = require('../../mockAPI/dealerProducts.json');
     //
-    //     this.state.dealerProduct = require('../../mockAPI/dealerProducts.json');
-    //     this.state.responseTosend = this.createReqFieldResponse();
-    //     // plz fetch SendRequestToBE
-    //     this.state.responseTomap = require('../../mockAPI/SendRequestToBE.json');
+    //    // plz fetch SendRequestToBE
+    //    //this.state.responseTomap = require('../../mockAPI/SendRequestToBE.json');
     //
-    //     //let mapppedval = _.omit(this.data.responseTomap,'Vehicle');
-    //     this.state.responseTomap.Products = this.getMappedRequiredField();
+    //    //let mapppedval = _.omit(this.data.responseTomap,'Vehicle');
     //
-    //     this.state.reqFieldResponseUI = require('../../mockAPI/reqFieldResponseUI.json');
-    //     this.state.reqFieldResponseUI.Products = this.getRenderdataFields();
-    //     this.setState({ "products": this.state.reqFieldResponseUI.Products });
     //
-    // }
+    //    //this.state.reqFieldResponseUI = require('../../mockAPI/reqFieldResponseUI.json');
+    // /**uncomment it to fetch data from server for reqFieldResponseUI */
+    //
+    //  }
+
+    componentDidMount() {
+        //console.log(HttpHelper("https://jsonplaceholder.typicode.com/posts/1",'get'))
+
+        this.state.dealerProduct = require('../../mockAPI/dealerProducts.json');
+        this.state.responseTosend = this.createReqFieldResponse();
+        // plz fetch SendRequestToBE
+        this.state.responseTomap = require('../../mockAPI/SendRequestToBE.json');
+
+        //let mapppedval = _.omit(this.data.responseTomap,'Vehicle');
+        this.state.responseTomap.Products = this.getMappedRequiredField();
+
+        this.state.reqFieldResponseUI = require('../../mockAPI/reqFieldResponseUI.json');
+        this.state.reqFieldResponseUI.Products = this.getRenderdataFields();
+        this.setState({ "products": this.state.reqFieldResponseUI.Products });
+
+    }
 
     getDealerproduct(){
         HttpHelper('http://192.168.17.32:6100/api/deal/v1/dealer-products/', 'get').then(function (data) {
@@ -78,7 +78,7 @@ export default class eMenu extends Component {
         HttpHelper('http://10.117.18.27:6220/Rating/RatingRESTAPI/json/requiredfields_json', 'post', this.state.responseTosend).then(function (data) {
             this.state.responseTomap = data;
             this.state.reqFieldResponseUI = data;
-            this.state.reqFieldResponseUI.Products  = this.getMappedRequiredField();
+            this.state.reqFieldResponseUI.Products = this.getMappedRequiredField();
             this.state.reqFieldResponseUI.Products = this.getRenderdataFields();
             this.setState({ "products": this.state.reqFieldResponseUI.Products });
             //this.createRequiredJson();
@@ -165,8 +165,7 @@ export default class eMenu extends Component {
                 if (Object.keys(grpResponseObj).indexOf(childitem.Category) == -1) {
                     grpResponseObj[childitem.Category] = [];
                 }
-                if (childitem.Required == 'Y' && childitem.Category != 'Vehicle'
-                    && childitem.ControlType != 'NA') {
+                if (childitem.ControlType != 'NA') {
                     if (childitem.FieldValues && childitem.FieldValues.length > 4) {
                         grpResponseObj[childitem.Category].push(childitem)
                     }
@@ -242,3 +241,4 @@ export default class eMenu extends Component {
         );
     }
 }
+
