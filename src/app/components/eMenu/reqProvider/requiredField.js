@@ -30,14 +30,9 @@ const RequireProvider = (props) => {
                     </div>) :
                         (<section className="acc">
                             <p className="emenuHead">Required Provider Question</p>
-                            {props.error != undefined && props.error.length>0?
-                            <div className="errorMsg" style={{padding: '8px 0px 9px 0px'}}>
-                            {props.error != undefined && props.error.length>0?
-                                props.error.map((c, i) => {
-                                    return <ErrorMsg key={i} Caption={c.Caption}/>
-                                }):null
+                            {props.error ?
+                                <ErrorMsg Caption="All fields are required"/>:null
                             }
-                            </div>:null}
                             <div className="col-xs-12" style={{ marginLeft: '5px', paddingBottom: '5px',paddingTop:'5px' }}>
 
                                 {

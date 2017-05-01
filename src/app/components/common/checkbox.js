@@ -6,7 +6,7 @@ const Checkbox = (props) => {
             <input type="checbox" className="radio" 
             name={props.clientProductId+"-"+props.qId} checked={props.selected} 
             onChange={()=>props.events(props.clientProductId,props.clientProductId+"-"+props.qId,props.categoryName,props.data)} />
-            <span>{props.data.Desc}</span>
+            <span className={(props.selected == false?' errorMsgText':'')}>{props.data.Desc}</span>
         </label>
     )
 }

@@ -15,7 +15,7 @@ export default class eMenu extends Component {
             products: [],
             active: true,
             datevalue:moment(),
-            unfilledData :[]
+            isError :false
         };
         this.events = {};
         this.data = {};
@@ -218,19 +218,24 @@ export default class eMenu extends Component {
     }
 
     eMenuOnsave() {
+        let isvalidData = true;
         let questiondata = this.state.reqFieldResponseUI.Products;
-        let unfilledData = [];
         _.map(questiondata, function (category, idx) {
 
             return (_.map(category.GroupedCategory, function (qs, i) {
 
                 return _.map(qs, function (q, i) {
                     if (q.displayUI && !q.Value && (q.ControlType != 'NA' && q.ControlType != 'Calendar' && (q.FieldValues !== undefined && q.FieldValues.length > 0 && q.FieldValues.length <= 4))) {
-                        return unfilledData.push(q);
+                        isvalidData =false;
+                        return q['isValid'] = false;
                     }else if (q.displayUI && !q.Value && (q.ControlType != 'NA' && q.ControlType != 'Calendar' && (q.FieldValues !== undefined && q.FieldValues.length > 4))) {
-                        return  unfilledData.push(q);
+                        isvalidData = false;
+                        return q['isValid'] = false;
                     }else if(q.displayUI && !q.Value  && (q.ControlType != 'NA' && q.ControlType != 'Calendar')&& (q.FieldValues !== undefined &&  q.FieldValues.length == 0)){
-                        unfilledData.push(q);
+                        isvalidData = false;
+                        q['isValid'] = false;
+                    }else{
+                        delete q['isValid'];
                     }
                 })
 
@@ -238,11 +243,11 @@ export default class eMenu extends Component {
 
         })
 
-
-        this.setState({ "unfilledData": unfilledData });
-        if(unfilledData.length == 0) {
+        if(isvalidData) {
+            this.setState({"isError":false});
             this.setState({"saveEMenu": false});
         }else{
+            this.setState({"isError":true});
             this.setState({"saveEMenu": true});
         }
 
@@ -285,7 +290,7 @@ export default class eMenu extends Component {
             <div>
                 {this.state.reqFieldResponseUI ?
 
-                    <RequireProvider header='eMenu' error={this.state.unfilledData} IsEdit={this.state.saveEMenu} data={this.state.reqFieldResponseUI} events={this.events} />
+                    <RequireProvider header='eMenu' error={this.state.isError} IsEdit={this.state.saveEMenu} data={this.state.reqFieldResponseUI} events={this.events} />
                     :
                     null}
                 <TermRate events={this.events.eMenuOnsave}/>

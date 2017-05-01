@@ -6,7 +6,7 @@ const Select = (props) => {
     }
     return (
         <div className="answer">
-            <select className="form-control" style={{width:'auto'}}  value={props.data.Value}
+            <select className={"form-control" + (props.data.isValid == false?' errorMsg':'')} style={{width:'auto'}}  value={props.data.Value}
             onChange={(event)=>props.events(props.clientProductId,props.clientProductId+"-"+props.qId,props.categoryName,event,props.caption)} >
                 {
 

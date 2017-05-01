@@ -329,6 +329,9 @@ h6 {
     margin-bottom: 31px;
 }
 .errorMsg{
-    background: #ff5a5a;
-    color: #fff;
+    background-color: rgba(236, 88, 64, 0.1) !important;
+    border-color: #ec5840 !important;
+}
+.errorMsgText{
+    color: #ec5840;
 }

@@ -2,9 +2,9 @@ import React from 'react';
 
 const ErrorMsg = (props) => {
     return (
-        <div className="errorMsg">
-            <ul style={{listStyle: 'none',marginBottom:'0px'}}>
-                <li><span><sup>*</sup></span><strong>{props.Caption} </strong><span>is a required field </span></li>
+        <div style={{backgroundColor:'transparent',color:'red'}}>
+            <ul style={{listStyle: 'none',marginBottom:'0px',paddingLeft: '18px'}}>
+                <li><span><sup style={{"color":"red"}}>*</sup></span><strong>{props.Caption} </strong><span></span></li>
             </ul>
         </div>
     )
