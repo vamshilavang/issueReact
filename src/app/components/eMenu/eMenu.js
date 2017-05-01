@@ -190,7 +190,7 @@ export default class eMenu extends Component {
     eMenuOptionselect(ClientProductId, qid, catname, optvalue, caption) {
         //console.log(qid + " " +optvalue);
         let questiondata = this.state.reqFieldResponseUI.Products;
-        let insertIndex = -1;
+        let isFilled = true;
         if (questiondata.length > 0) {
             _.map(questiondata, function (category, idx) {
                 if (category.ClientProductId + "-" + qid.split('-')[1] == qid) {
@@ -198,17 +198,36 @@ export default class eMenu extends Component {
                         if (i == catname) {
                             return _.map(qs, function (q, i) {
                                 if (q.displayUI && q.Caption == caption && (q.ControlType != 'NA' && q.ControlType != 'Calendar' && (q.FieldValues !== undefined && q.FieldValues.length > 0 && q.FieldValues.length <= 4))) {
+                                    q['isValid'] = true;
+                                    isFilled = true;
                                     return q.Value = optvalue.Code;
                                 }else if (q.displayUI && q.Caption == caption && (q.ControlType != 'NA' && q.ControlType != 'Calendar' && (q.FieldValues !== undefined && q.FieldValues.length > 4))) {
-                                    return q.Value = optvalue.target == undefined ? optvalue.Code : optvalue.target.value;
+                                    if(optvalue.target && optvalue.target.value) {
+                                        q['isValid'] = true;
+                                        isFilled = true;
+                                        return q.Value = optvalue.target.value;
+                                    }else if(optvalue.Code != undefined)
+                                        q['isValid'] = true;
+                                    isFilled = true;
+                                        q.Value = optvalue.Code;
                                 }else if(q.displayUI && q.Caption == caption && (q.ControlType != 'NA' && q.ControlType != 'Calendar')&& (q.FieldValues !== undefined &&  q.FieldValues.length == 0)){
+                                    q['isValid'] = true;
+                                    isFilled = true;
                                     q.Value = optvalue.target.value;
+                                }else{
+                                    isFilled = false;
                                 }
                             })
                         }
                     }))
                 }
             })
+        }
+        if(isFilled) {
+            this.setState({"isError": false});
+        }
+        else{
+            this.setState({"isError":true});
         }
         this.setState({ "reqFieldResponseUI": this.state.reqFieldResponseUI });
     }
@@ -225,13 +244,13 @@ export default class eMenu extends Component {
             return (_.map(category.GroupedCategory, function (qs, i) {
 
                 return _.map(qs, function (q, i) {
-                    if (q.displayUI && !q.Value && (q.ControlType != 'NA' && q.ControlType != 'Calendar' && (q.FieldValues !== undefined && q.FieldValues.length > 0 && q.FieldValues.length <= 4))) {
+                    if (q.displayUI && (!q.Value || q.Value=='please select')  && (q.ControlType != 'NA' && q.ControlType != 'Calendar' && (q.FieldValues !== undefined && q.FieldValues.length > 0 && q.FieldValues.length <= 4))) {
                         isvalidData =false;
                         return q['isValid'] = false;
-                    }else if (q.displayUI && !q.Value && (q.ControlType != 'NA' && q.ControlType != 'Calendar' && (q.FieldValues !== undefined && q.FieldValues.length > 4))) {
+                    }else if (q.displayUI && (!q.Value || q.Value=='please select') && (q.ControlType != 'NA' && q.ControlType != 'Calendar' && (q.FieldValues !== undefined && q.FieldValues.length > 4))) {
                         isvalidData = false;
                         return q['isValid'] = false;
-                    }else if(q.displayUI && !q.Value  && (q.ControlType != 'NA' && q.ControlType != 'Calendar')&& (q.FieldValues !== undefined &&  q.FieldValues.length == 0)){
+                    }else if(q.displayUI && (!q.Value || q.Value=='please select') && (q.ControlType != 'NA' && q.ControlType != 'Calendar')&& (q.FieldValues !== undefined &&  q.FieldValues.length == 0)){
                         isvalidData = false;
                         q['isValid'] = false;
                     }else{
@@ -267,13 +286,17 @@ export default class eMenu extends Component {
 
     opendatepicker(date) {
         let questiondata = this.state.reqFieldResponseUI.Products;
-        let insertIndex = -1;
+        let isFilled = true;
         if (questiondata.length > 0) {
             _.map(questiondata, function (category, idx) {
                     return (_.map(category.GroupedCategory, function (qs, i) {
 
                             return _.map(qs, function (q, i) {
+                                if(!q.isValid){
+                                    isFilled = false;
+                                }
                                 if (q.ControlType == 'Calender') {
+                                    q['isValid'] = true;
                                     return q.Value = date;
                                 }
                             })
@@ -281,6 +304,12 @@ export default class eMenu extends Component {
                     }))
 
             })
+        }
+        if(isFilled) {
+            this.setState({"isError": false});
+        }
+        else{
+            this.setState({"isError":true});
         }
         this.setState({ "reqFieldResponseUI": this.state.reqFieldResponseUI });
     }

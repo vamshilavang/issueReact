@@ -2,7 +2,8 @@ import React from 'react';
 
 const Select = (props) => {
     if(!props.data.Value){
-        props.data.FieldValues.push({"Code":"","Desc":"Please select"})
+        if(props.data.FieldValues[0].Code != "please select" )
+        props.data.FieldValues.unshift({"Code":"please select","Desc":"Please select"})
     }
     return (
         <div className="answer">
