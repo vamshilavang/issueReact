@@ -101,7 +101,7 @@ export default class eMenu extends Component {
         //     this.returnRequiredFieldResponse(this.fetchDealtype(dataTosend))
         // }.bind(this));
         dataTosend["Vehicle"] =  { "BookType": "2",  "Type": "1" };
-        this.fetchDealtype(dataTosend);
+        //this.fetchDealtype(dataTosend);
     }
 
     fetchDealtype(dataTosend){

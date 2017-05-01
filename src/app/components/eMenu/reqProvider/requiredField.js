@@ -24,7 +24,7 @@ const RequireProvider = (props) => {
             {questiondata.length > 0?
                 <div className="row rootborder">
 
-                    {props.IsEdit == false ? (<div className="col-xs-12 emenucol-head" style={{paddingTop:'0px'}}>
+                    {props.IsEdit == false ? (<div className="col-xs-12 emenucol-head" style={{paddingTop:'10px'}}>
                         <span className="emenuHead">Required Provider Question</span><strong style={{ float: 'right', cursor: 'pointer', textDecoration: 'underline', color: '#3f3fb5' }}
                                                                                              onClick={props.events.editEMenu}>Edit</strong>
                     </div>) :

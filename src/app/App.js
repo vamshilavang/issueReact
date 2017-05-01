@@ -10,7 +10,7 @@ class App extends Component {
     return (
     	<Provider store={store}>
 	      <div>
-	        <div className="container" style={{    marginTop: '10px'}}>
+	        <div className="container" style={{marginTop: '10px'}}>
 	          <Emenu />
 	        </div>
 	      </div>

@@ -15,7 +15,7 @@ const Question = (props) => {
 
         return (<div>
            <span>
-           <div>{props.data.Caption}</div>
+           <div style={{display: 'inline-block',marginRight: '20px'}}>{props.data.Caption}</div>
                 <Calender data={props.data} events={props.events.opendatepicker}/>
            </span>
         </div>)
