@@ -15,7 +15,7 @@ const Question = (props) => {
 
         return (<div>
            <span>
-           <div style={{display: 'inline-block',marginRight: '20px'}} className={props.data.isValid == false?' errorMsgText':''}>{props.data.Caption}</div>
+           <div style={{display: 'inline-block',marginRight: '20px'}}>{props.data.Caption}</div>
                 <Calender data={props.data} events={props.events.opendatepicker}/>
            </span>
         </div>)
@@ -25,7 +25,7 @@ const Question = (props) => {
             <div>
 
             <span>  {(props.data.FieldValues != undefined && props.data.FieldValues.length >0)||props.data.ControlType == 'Textbox' ?
-                <div className={props.data.isValid == false?' errorMsgText':''}>{props.data.Caption}</div>:null}
+                <div>{props.data.Caption}</div>:null}
                 <form>
                         <div className="radio" style={{ marginTop: '0px' }}>
                             <div className="control-group" style={{ padding: '0px' }}>

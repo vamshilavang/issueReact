@@ -7,7 +7,7 @@ const Radio = (props) => {
             <input type="radio" className="radio"
             name={props.clientProductId+"-"+props.qId} checked={props.selected}
             onChange={()=>props.events(props.clientProductId,props.clientProductId+"-"+props.qId,props.categoryName,props.data,props.caption)} />
-            <span className={(props.isValid== false?' errorMsgText':'')}>{props.data.Desc}</span>
+            <span  className={(props.isValid == false?' errorMsgText':'')}>{props.data.Desc}</span>
         </label></div>
     )
 }

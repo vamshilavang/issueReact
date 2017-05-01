@@ -8,8 +8,10 @@ import TermRate from './termAndRateOption/termRate';
 import ProductHeading from './productView/productHeading';
 
 export default class eMenu extends Component {
+
     constructor(props) {
         super(props)
+        window.isSaved = false;
         this.state = {
             saveEMenu: true,
             products: [],
@@ -215,7 +217,11 @@ export default class eMenu extends Component {
                                     isFilled = true;
                                     q.Value = optvalue.target.value;
                                 }else{
-                                    isFilled = false;
+                                    if(q['isValid']){
+                                        isFilled = true;
+                                    }else{
+                                        isFilled = false;
+                                    }
                                 }
                             })
                         }
@@ -223,7 +229,7 @@ export default class eMenu extends Component {
                 }
             })
         }
-        if(isFilled) {
+        if(!isSaved || isFilled) {
             this.setState({"isError": false});
         }
         else{
@@ -263,9 +269,11 @@ export default class eMenu extends Component {
         })
 
         if(isvalidData) {
+            isSaved = true;
             this.setState({"isError":false});
             this.setState({"saveEMenu": false});
         }else{
+            isSaved = false;
             this.setState({"isError":true});
             this.setState({"saveEMenu": true});
         }
@@ -305,7 +313,7 @@ export default class eMenu extends Component {
 
             })
         }
-        if(isFilled) {
+        if(isFilled || !isSaved) {
             this.setState({"isError": false});
         }
         else{
