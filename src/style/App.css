@@ -190,7 +190,7 @@ label {
 }
 
 .r-small-bottom-margin {
-    margin-bottom: 10px;
+    margin-bottom: 22px;
     margin-top: -19px;
 }
 
@@ -255,10 +255,10 @@ input[type='radio']:checked:after {
 
 h6 {
     font-size: 12px;
-    margin-bottom: -5px !important;
+    margin-bottom: 5px !important;
 }
 .r-panel1 {
-    margin: -39px -10px;
+    margin: -12px -10px;
     padding: 10px;
     border: 1px solid #cfcfcf;
     border-radius: 5px;

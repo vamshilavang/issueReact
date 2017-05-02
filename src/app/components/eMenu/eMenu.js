@@ -38,41 +38,41 @@ export default class eMenu extends Component {
         this.createRequestdataTosend = this.createRequestdataTosend.bind(this);
     }
 
-    //  componentDidMount() {
-    //    //console.log(HttpHelper("https://jsonplaceholder.typicode.com/posts/1",'get'))
-    //    this.getDealerproduct();
-    //    //this.state.dealerProduct = require('../../mockAPI/dealerProducts.json');
+     componentDidMount() {
+       //console.log(HttpHelper("https://jsonplaceholder.typicode.com/posts/1",'get'))
+       this.getDealerproduct();
+       //this.state.dealerProduct = require('../../mockAPI/dealerProducts.json');
+
+       // plz fetch SendRequestToBE
+       //this.state.responseTomap = require('../../mockAPI/SendRequestToBE.json');
+
+       //let mapppedval = _.omit(this.data.responseTomap,'Vehicle');
+
+
+       //this.state.reqFieldResponseUI = require('../../mockAPI/reqFieldResponseUI.json');
+    /**uncomment it to fetch data from server for reqFieldResponseUI */
+
+     }
+
+    // componentDidMount() {
     //
-    //    // plz fetch SendRequestToBE
-    //    //this.state.responseTomap = require('../../mockAPI/SendRequestToBE.json');
+    //     let hiddenInputElement = document.getElementById("example-datepicker");
+    //     console.log(hiddenInputElement);
+    //     //console.log(HttpHelper("https://jsonplaceholder.typicode.com/posts/1",'get'))
     //
-    //    //let mapppedval = _.omit(this.data.responseTomap,'Vehicle');
+    //     this.state.dealerProduct = require('../../mockAPI/dealerProducts.json');
+    //     //this.state.responseTosend = this.createReqFieldResponse();
+    //     // plz fetch SendRequestToBE
+    //     this.state.responseTomap = require('../../mockAPI/SendRequestToBE.json');
     //
+    //     //let mapppedval = _.omit(this.data.responseTomap,'Vehicle');
+    //     this.state.responseTomap.Products = this.getMappedRequiredField();
     //
-    //    //this.state.reqFieldResponseUI = require('../../mockAPI/reqFieldResponseUI.json');
-    // /**uncomment it to fetch data from server for reqFieldResponseUI */
+    //     this.state.reqFieldResponseUI = require('../../mockAPI/reqFieldResponseUI.json');
+    //     this.state.reqFieldResponseUI.Products = this.getRenderdataFields();
+    //     this.setState({ "products": this.state.reqFieldResponseUI.Products });
     //
-    //  }
-
-    componentDidMount() {
-
-        let hiddenInputElement = document.getElementById("example-datepicker");
-        console.log(hiddenInputElement);
-        //console.log(HttpHelper("https://jsonplaceholder.typicode.com/posts/1",'get'))
-
-        this.state.dealerProduct = require('../../mockAPI/dealerProducts.json');
-        this.state.responseTosend = this.createReqFieldResponse();
-        // plz fetch SendRequestToBE
-        this.state.responseTomap = require('../../mockAPI/SendRequestToBE.json');
-
-        //let mapppedval = _.omit(this.data.responseTomap,'Vehicle');
-        this.state.responseTomap.Products = this.getMappedRequiredField();
-
-        this.state.reqFieldResponseUI = require('../../mockAPI/reqFieldResponseUI.json');
-        this.state.reqFieldResponseUI.Products = this.getRenderdataFields();
-        this.setState({ "products": this.state.reqFieldResponseUI.Products });
-
-    }
+    // }
 
     getDealerproduct(){
         HttpHelper('http://192.168.17.32:6100/api/deal/v1/dealer-products/', 'get').then(function (data) {
@@ -98,11 +98,12 @@ export default class eMenu extends Component {
         let dataTosend = {};
         dataTosend["KeyData"] = {"ClientId": "DEM", "ClientDealerId": this.state.dealerProduct.results[0].dealer_id,
             "DTDealerId": this.state.dealerProduct.results[0].dealer_id, "RequestDate": "\/Date(1472097614353)\/"};
-        // HttpHelper('http://10.117.36.20:6110/api/mobile/v1/deal/deal-jackets/310200000002397200/deals/310200000002397201/vehicle/', 'get').then(function (data) {
-        //     dataTosend["Vehicle"] =  { "BookType": "2",  "Type": data.certified_used == 'N'?1:2 };
-        //     this.returnRequiredFieldResponse(this.fetchDealtype(dataTosend))
-        // }.bind(this));
-        dataTosend["Vehicle"] =  { "BookType": "2",  "Type": "1" };
+        HttpHelper('http://10.117.36.20:6110/api/mobile/v1/deal/deal-jackets/310200000002397200/deals/310200000002397201/vehicle/', 'get').then(function (data) {
+            dataTosend["Vehicle"] =  { "BookType": "2",  "Type": data.certified_used == 'N'?1:2 };
+            this.fetchDealtype(dataTosend)
+          //  this.returnRequiredFieldResponse(this.fetchDealtype(dataTosend))
+        }.bind(this));
+        //dataTosend["Vehicle"] =  { "BookType": "2",  "Type": "1" };
         //this.fetchDealtype(dataTosend);
     }
 
@@ -145,23 +146,26 @@ export default class eMenu extends Component {
     }
 
     getMappedRequiredField() {
-        let responseTomap = this.state.responseTomap.Products;
+        let responseTomap = this.state.reqFieldResponseUI.Products;
+        let dealerProductData = this.state.dealerProduct.results;
         let mappedData = [];
-        _.each(this.state.dealerProduct.results, function (item, i) {
-            if (item['is_rateable']) {
-                _.each(responseTomap, function (childitem, idx) {
+        _.each(responseTomap, function (childitem, i) {
+
+                _.each(dealerProductData, function (item, idx) {
                     // if (('VSC' == childitem['ProductTypeCode'])
                     //     && (item['provider_code'] == childitem['ProviderId'])) {
                     //     mappedData.push(childitem);
                     // }
                     //comment for API
-                    childitem['ClientProductId'] = item['product_id']
-                    if ((item['category_code'] == childitem['ProductTypeCode'])
-                        && (item['provider_code'] == childitem['ProviderId'])) {
-                        mappedData.push(childitem);
+                    if (item['is_rateable'] && !item['is_deleted']) {
+                        if ((item['category_code'] == childitem['ProductTypeCode'])
+                            && (item['provider_code'] == childitem['ProviderId'])) {
+                            childitem['ClientProductId'] = item['product_id']
+                            mappedData.push(childitem);
+                        }
                     }
                 });
-            }
+
         });
         return mappedData;
     }
@@ -174,7 +178,7 @@ export default class eMenu extends Component {
                 if (Object.keys(grpResponseObj).indexOf(childitem.Category) == -1) {
                     grpResponseObj[childitem.Category] = [];
                 }
-                if (childitem.displayUI && childitem.ControlType != 'NA') {
+                if (childitem.DisplayOnUI && childitem.ControlType != 'NA') {
                     if (childitem.FieldValues && childitem.FieldValues.length > 4) {
                         grpResponseObj[childitem.Category].push(childitem)
                     }
@@ -199,11 +203,11 @@ export default class eMenu extends Component {
                     return (_.map(category.GroupedCategory, function (qs, i) {
                         if (i == catname) {
                             return _.map(qs, function (q, i) {
-                                if (q.displayUI && q.Caption == caption && (q.ControlType != 'NA' && q.ControlType != 'Calendar' && (q.FieldValues !== undefined && q.FieldValues.length > 0 && q.FieldValues.length <= 4))) {
+                                if (q.DisplayOnUI && q.Caption == caption && (q.ControlType != 'NA' && q.ControlType != 'Calendar' && (q.FieldValues !== undefined && q.FieldValues.length > 0 && q.FieldValues.length <= 4))) {
                                     q['isValid'] = true;
                                     isFilled = true;
                                     return q.Value = optvalue.Code;
-                                }else if (q.displayUI && q.Caption == caption && (q.ControlType != 'NA' && q.ControlType != 'Calendar' && (q.FieldValues !== undefined && q.FieldValues.length > 4))) {
+                                }else if (q.DisplayOnUI && q.Caption == caption && (q.ControlType != 'NA' && q.ControlType != 'Calendar' && (q.FieldValues !== undefined && q.FieldValues.length > 4))) {
                                     if(optvalue.target && optvalue.target.value) {
                                         q['isValid'] = true;
                                         isFilled = true;
@@ -212,7 +216,7 @@ export default class eMenu extends Component {
                                         q['isValid'] = true;
                                     isFilled = true;
                                         q.Value = optvalue.Code;
-                                }else if(q.displayUI && q.Caption == caption && (q.ControlType != 'NA' && q.ControlType != 'Calendar')&& (q.FieldValues !== undefined &&  q.FieldValues.length == 0)){
+                                }else if(q.DisplayOnUI && q.Caption == caption && (q.ControlType != 'NA' && q.ControlType != 'Calendar')&& (q.FieldValues !== undefined &&  q.FieldValues.length == 0)){
                                     q['isValid'] = true;
                                     isFilled = true;
                                     q.Value = optvalue.target.value;
@@ -250,13 +254,13 @@ export default class eMenu extends Component {
             return (_.map(category.GroupedCategory, function (qs, i) {
 
                 return _.map(qs, function (q, i) {
-                    if (q.displayUI && (!q.Value || q.Value=='please select')  && (q.ControlType != 'NA' && q.ControlType != 'Calendar' && (q.FieldValues !== undefined && q.FieldValues.length > 0 && q.FieldValues.length <= 4))) {
+                    if (q.DisplayOnUI && (!q.Value || q.Value=='please select')  && (q.ControlType != 'NA' && q.ControlType != 'Calendar' && (q.FieldValues !== undefined && q.FieldValues.length > 0 && q.FieldValues.length <= 4))) {
                         isvalidData =false;
                         return q['isValid'] = false;
-                    }else if (q.displayUI && (!q.Value || q.Value=='please select') && (q.ControlType != 'NA' && q.ControlType != 'Calendar' && (q.FieldValues !== undefined && q.FieldValues.length > 4))) {
+                    }else if (q.DisplayOnUI && (!q.Value || q.Value=='please select') && (q.ControlType != 'NA' && q.ControlType != 'Calendar' && (q.FieldValues !== undefined && q.FieldValues.length > 4))) {
                         isvalidData = false;
                         return q['isValid'] = false;
-                    }else if(q.displayUI && (!q.Value || q.Value=='please select') && (q.ControlType != 'NA' && q.ControlType != 'Calendar')&& (q.FieldValues !== undefined &&  q.FieldValues.length == 0)){
+                    }else if(q.DisplayOnUI && (!q.Value || q.Value=='please select') && (q.ControlType != 'NA' && q.ControlType != 'Calendar')&& (q.FieldValues !== undefined &&  q.FieldValues.length == 0)){
                         isvalidData = false;
                         q['isValid'] = false;
                     }else{
@@ -280,10 +284,10 @@ export default class eMenu extends Component {
 
 
 
-        // HttpHelper('http://10.117.36.20:6126/api/deal/v1/deal-jackets/310200000000000502/deals/310200000000000502/required-fields/',
-        //     'post',this.state.reqFieldResponseUI).then(function (data) {
-        //
-        // }.bind(this));
+        HttpHelper('http://10.117.36.20:6126/api/deal/v1/deal-jackets/310200000000000502/deals/310200000000000502/required-fields/',
+            'post',this.state.reqFieldResponseUI).then(function (data) {
+
+        }.bind(this));
         //let data = HttpHelper('https://jsonplaceholder.typicode.com/posts/1','get')
     }
 
@@ -333,7 +337,7 @@ export default class eMenu extends Component {
                 <TermRate events={this.events.eMenuOnsave}/>
                 {!this.state.saveEMenu?
 
-                    <ProductHeading/>
+                    <ProductHeading items={this.state.dealerProduct}/>
                     :null}
             </div>
         );

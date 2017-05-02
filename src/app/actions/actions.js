@@ -1,4 +1,4 @@
-import {GET_RATES} from '../constents';
+import {GET_RATES} from '../constants/index';
 import {data} from '../mockAPI/rate-request-body';
 import axios from 'axios';
 
@@ -14,11 +14,8 @@ export const getDelarRates = (dispatch) => {
 			headers: { 'Content-Type': 'application/json' }
 	};
 				const url = 'http://10.117.18.27:6220/Rating/RatingRESTAPI/json/rates_json';
-				//	body: rateBody
-				console.log(url);
-				console.log(data);
-axios.post(url,data, config).then(function(response) {
-	console.log(response);
-	//dispatch({type: GET_RATES, values: response});
+				axios.post(url,data, config).then(function(response) {
+				console.log(response);
+				dispatch({type: GET_RATES, values: response});
 });
 }

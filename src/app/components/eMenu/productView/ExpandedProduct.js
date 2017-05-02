@@ -1,10 +1,25 @@
 import React from 'react';
+import {connect} from 'react-redux';
 
 class ExpandedProduct extends React.Component{
   constructor(props){
     super(props);
   }
   render(){
+    if(this.props.rateInfo && !this.props.rateInfo.length){
+      return <span/>;
+    }
+    const rates = this.props.rateInfo[0];
+    const programs = (
+      <div className="row r-small-bottom-margin">
+        <p className="r-gray r-bottom-no-margin r-small-text">Program</p>
+        <select className="form-control">
+        {rates.Levels.map(item => {
+            return <option key={ 1+item.Code+item.Desc}>{item.Desc}</option>
+        })}
+        </select>
+      </div>
+    );
     return(
       <div className="row">
         <div className="col-xs-3 r-small-right-left-margin">
@@ -13,7 +28,9 @@ class ExpandedProduct extends React.Component{
             <div className="row r-small-bottom-margin">
               <p className="r-gray r-bottom-no-margin r-small-text">Program</p>
               <select className="form-control">
-                <option>Program A</option>
+              {rates.Levels.map(item => {
+                  return <option key={ 1+item.Code+item.Desc}>{item.Desc}</option>
+              })}
               </select>
             </div>
             <div className="row r-small-bottom-margin">
@@ -53,7 +70,9 @@ class ExpandedProduct extends React.Component{
             <div className="row r-small-bottom-margin">
               <p className="r-gray r-bottom-no-margin r-small-text">Program</p>
               <select className="form-control">
-                <option>Program A</option>
+              {rates.Levels.map(item => {
+                  return <option key={ 2+item.Code+item.Desc}>{item.Desc}</option>
+              })}
               </select>
             </div>
             <div className="row r-small-bottom-margin">
@@ -93,7 +112,9 @@ class ExpandedProduct extends React.Component{
             <div className="row r-small-bottom-margin">
               <p className="r-gray r-bottom-no-margin r-small-text">Program</p>
               <select className="form-control">
-                <option>Program A</option>
+              {rates.Levels.map(item => {
+                  return <option key={ 3+item.Code+item.Desc}>{item.Desc}</option>
+              })}
               </select>
             </div>
             <div className="row r-small-bottom-margin">
@@ -133,7 +154,9 @@ class ExpandedProduct extends React.Component{
             <div className="row r-small-bottom-margin">
               <p className="r-gray r-bottom-no-margin r-small-text">Program</p>
               <select className="form-control">
-                <option>Program A</option>
+              {rates.Levels.map(item => {
+                  return <option key={ 4+item.Code+item.Desc}>{item.Desc}</option>
+              })}
               </select>
             </div>
             <div className="row r-small-bottom-margin">
@@ -172,6 +195,8 @@ class ExpandedProduct extends React.Component{
     );
   }
 }
+const mapStateToprops = state =>({
+  rateInfo: state.rates.ratesInfo
+});
 
-export default ExpandedProduct;
- 
+export default connect(mapStateToprops,null)(ExpandedProduct);

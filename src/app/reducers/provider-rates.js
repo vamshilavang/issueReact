@@ -1,13 +1,15 @@
 import {
 	GET_RATES
-} from '../constents';
+} from '../constants/index.js';
 const initialState = {
-	raterInfo: []
+	ratesInfo: []
 };
 
 export default function rates(state = initialState, action){
 	switch(action.type){
-		case GET_RATES: console.log(action);
+		case GET_RATES:
+		console.log('action',action);
+		return {...state, ratesInfo: action.values.data.Products};
 		break;
 		default	:
 		console.log(action);
