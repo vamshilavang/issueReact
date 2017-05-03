@@ -3,10 +3,10 @@
       "ClientId": "DEM",
       "ClientDealerId": "116627",
       "DTDealerId": "116627",
-      "RequestDate": "\/Date(1472097614353)\/"
+      "RequestDate": "/Date(1493254301893-0400)/"
    },
    "Vehicle": {
-      "BookType": "1",
+      "BookType": "2",
       "Type": "1"
    },
    "Finance": {
@@ -14,6 +14,12 @@
      
    },
    "Products": [
+      {
+         "ProductTypeCode": "VSC",
+         "ProviderId": "APC",
+         "ProviderDealerId": ""
+         
+      },
       {
          "ProductTypeCode": "AP",
          "ProviderId": "APC",
