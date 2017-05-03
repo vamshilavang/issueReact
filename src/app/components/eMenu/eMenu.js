@@ -38,41 +38,46 @@ export default class eMenu extends Component {
         this.createRequestdataTosend = this.createRequestdataTosend.bind(this);
     }
 
-     componentDidMount() {
-       //console.log(HttpHelper("https://jsonplaceholder.typicode.com/posts/1",'get'))
-       this.getDealerproduct();
-       //this.state.dealerProduct = require('../../mockAPI/dealerProducts.json');
-
-       // plz fetch SendRequestToBE
-       //this.state.responseTomap = require('../../mockAPI/SendRequestToBE.json');
-
-       //let mapppedval = _.omit(this.data.responseTomap,'Vehicle');
-
-
-       //this.state.reqFieldResponseUI = require('../../mockAPI/reqFieldResponseUI.json');
-    /**uncomment it to fetch data from server for reqFieldResponseUI */
-
-     }
-
-    // componentDidMount() {
+    //  componentDidMount() {
+    //    //console.log(HttpHelper("https://jsonplaceholder.typicode.com/posts/1",'get'))
+    //    this.getDealerproduct();
+    //    //this.state.dealerProduct = require('../../mockAPI/dealerProducts.json');
     //
-    //     let hiddenInputElement = document.getElementById("example-datepicker");
-    //     console.log(hiddenInputElement);
-    //     //console.log(HttpHelper("https://jsonplaceholder.typicode.com/posts/1",'get'))
+    //    // plz fetch SendRequestToBE
+    //    //this.state.responseTomap = require('../../mockAPI/SendRequestToBE.json');
     //
-    //     this.state.dealerProduct = require('../../mockAPI/dealerProducts.json');
-    //     //this.state.responseTosend = this.createReqFieldResponse();
-    //     // plz fetch SendRequestToBE
-    //     this.state.responseTomap = require('../../mockAPI/SendRequestToBE.json');
+    //    //let mapppedval = _.omit(this.data.responseTomap,'Vehicle');
     //
-    //     //let mapppedval = _.omit(this.data.responseTomap,'Vehicle');
-    //     this.state.responseTomap.Products = this.getMappedRequiredField();
     //
-    //     this.state.reqFieldResponseUI = require('../../mockAPI/reqFieldResponseUI.json');
-    //     this.state.reqFieldResponseUI.Products = this.getRenderdataFields();
-    //     this.setState({ "products": this.state.reqFieldResponseUI.Products });
+    //    //this.state.reqFieldResponseUI = require('../../mockAPI/reqFieldResponseUI.json');
+    // /**uncomment it to fetch data from server for reqFieldResponseUI */
     //
-    // }
+    //  }
+
+    componentDidMount() {
+
+        let hiddenInputElement = document.getElementById("example-datepicker");
+        console.log(hiddenInputElement);
+        //console.log(HttpHelper("https://jsonplaceholder.typicode.com/posts/1",'get'))
+
+        this.state.financialInfo_data = require('../../mockAPI/financialInfo.json'); // for mappedfield fiels is financial set value in requiredFiieldResponseUI
+        this.state.VechileInfo_data = require('../../mockAPI/Vehicle.json');// for mappedfield fiels is vechile set value in requiredFiieldResponseUI
+
+        this.state.dealerProduct = require('../../mockAPI/dealerProducts.json');
+        //this.state.responseTosend = this.createReqFieldResponse();
+        // plz fetch SendRequestToBE
+        this.state.responseTomap = require('../../mockAPI/SendRequestToBE.json');
+        this.state.reqFieldResponseUI = require('../../mockAPI/reqFieldResponseUI.json');
+        //this.state.responseTomap.Products = this.returnRequiredFieldResponse();
+        //this.state.reqFieldResponseUI.Products = this.setValueMapping();
+        //let mapppedval = _.omit(this.data.responseTomap,'Vehicle');
+        this.state.reqFieldResponseUI.Products = this.getMappedRequiredField();
+
+
+        this.state.reqFieldResponseUI.Products = this.getRenderdataFields();
+        this.setState({ "products": this.state.reqFieldResponseUI.Products });
+
+    }
 
     getDealerproduct(){
         HttpHelper('http://192.168.17.32:6100/api/deal/v1/dealer-products/', 'get').then(function (data) {
@@ -175,6 +180,13 @@ export default class eMenu extends Component {
         let RequiredFieldResponseProduct = this.state.reqFieldResponseUI.Products;
         _.each(RequiredFieldResponseProduct, function (item, idx) {
             _.each(item.Fields, function (childitem, index) {
+                if(childitem.MappingAPI != '' && childitem.MappingField != ''){
+                    if(childitem.MappingAPI == 'Vechile'){
+                        childitem.Value = _.pick(this.state.VechileInfo_data,childitem.MappingField)
+                    }else if(childitem.MappingAPI == 'Finance'){
+                        childitem.Value = _.pick(this.state.financialInfo_data,childitem.MappingField)
+                    }
+                }
                 if (Object.keys(grpResponseObj).indexOf(childitem.Category) == -1) {
                     grpResponseObj[childitem.Category] = [];
                 }
