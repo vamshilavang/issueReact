@@ -21,7 +21,7 @@
           "MinValue": "",
           "Name": "aspiration_code",
           "Required": "Y",
-          "Value": null
+          "Value": "N/A"
         },
         {
           "Caption": "Cylinders",
@@ -38,7 +38,7 @@
           "MinValue": "",
           "Name": "cylinders",
           "Required": "Y",
-          "Value": null
+          "Value": "N/A"
         },
         {
           "Caption": "Driving Wheels",
@@ -55,7 +55,7 @@
           "MinValue": "",
           "Name": "driving_wheels",
           "Required": "Y",
-          "Value": null
+          "Value": "N/A"
         },
         {
           "Caption": "Fuel Type",
@@ -72,7 +72,7 @@
           "MinValue": "",
           "Name": "fuel_type",
           "Required": "Y",
-          "Value": null
+          "Value": "N/A"
         },
         {
           "Caption": "Segmentation Code",
@@ -89,7 +89,7 @@
           "MinValue": "",
           "Name": "segmentation_code",
           "Required": "Y",
-          "Value": null
+          "Value": "N/A"
         },
         {
           "Caption": "Ton Rating",
@@ -106,7 +106,7 @@
           "MinValue": "",
           "Name": "ton_rating",
           "Required": "Y",
-          "Value": null
+          "Value": "N/A"
         },
         {
           "Caption": "In Service Date",
@@ -380,7 +380,7 @@
           "MinValue": "",
           "Name": "book_type",
           "Required": "Y",
-          "Value": null
+          "Value": "POLK"
         },
         {
           "Caption": "",
@@ -611,7 +611,7 @@
           "MinValue": "",
           "Name": "book_type",
           "Required": "Y",
-          "Value": null
+          "Value": "POLK"
         },
         {
           "Caption": "",
@@ -643,6 +643,6 @@
     "Credentials": null,
     "DTDealerId": "116627",
     "EchoData": null,
-    "RequestDate": "/Date(1493743484398-0400)/"
+    "RequestDate": "/Date(1493836333441-0400)/"
   }
 }
