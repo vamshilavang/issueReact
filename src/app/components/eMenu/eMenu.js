@@ -33,6 +33,7 @@ export default class eMenu extends Component {
         this.fetchDealtype = this.fetchDealtype.bind(this);
         this.returnRequiredFieldResponse = this.returnRequiredFieldResponse.bind(this);
         this.getMappedRequiredField = this.getMappedRequiredField.bind(this);
+        this.mapClientProductId = this.mapClientProductId.bind(this);
         this.getRenderdataFields = this.getRenderdataFields.bind(this);
         this.createReqFieldResponse = this.createReqFieldResponse.bind(this);
         this.createRequestdataTosend = this.createRequestdataTosend.bind(this);
@@ -66,11 +67,17 @@ export default class eMenu extends Component {
         this.state.responseTomap = require('../../mockAPI/SendRequestToBE.json');
 
         //let mapppedval = _.omit(this.data.responseTomap,'Vehicle');
+        this.state.reqFieldResponseUI = require('../../mockAPI/reqFieldResponseUI.json');
         this.state.responseTomap.Products = this.getMappedRequiredField();
 
-        this.state.reqFieldResponseUI = require('../../mockAPI/reqFieldResponseUI.json');
+
+        //this.state.reqFieldResponseUI = this.mapClientProductId()
         this.state.reqFieldResponseUI.Products = this.getRenderdataFields();
         this.setState({ "products": this.state.reqFieldResponseUI.Products });
+
+    }
+
+    mapClientProductId(){
 
     }
 
@@ -145,23 +152,26 @@ export default class eMenu extends Component {
     }
 
     getMappedRequiredField() {
-        let responseTomap = this.state.responseTomap.Products;
+        let responseTomap = this.state.reqFieldResponseUI.Products;
+        let dealerProductData = this.state.dealerProduct.results;
         let mappedData = [];
-        _.each(this.state.dealerProduct.results, function (item, i) {
-            if (item['is_rateable']) {
-                _.each(responseTomap, function (childitem, idx) {
+        _.each(responseTomap, function (childitem, i) {
+
+                _.each(dealerProductData, function (item, idx) {
                     // if (('VSC' == childitem['ProductTypeCode'])
                     //     && (item['provider_code'] == childitem['ProviderId'])) {
                     //     mappedData.push(childitem);
                     // }
                     //comment for API
-                    childitem['ClientProductId'] = item['product_id']
-                    if ((item['category_code'] == childitem['ProductTypeCode'])
-                        && (item['provider_code'] == childitem['ProviderId'])) {
-                        mappedData.push(childitem);
+                    if (item['is_rateable']) {
+                        if ((item['category_code'] == childitem['ProductTypeCode'])
+                            && (item['provider_code'] == childitem['ProviderId'])) {
+                            childitem['ClientProductId'] = item['product_id']
+                            mappedData.push(childitem);
+                        }
                     }
                 });
-            }
+
         });
         return mappedData;
     }

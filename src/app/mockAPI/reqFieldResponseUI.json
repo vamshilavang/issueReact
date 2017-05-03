@@ -3,7 +3,7 @@
   "Errors": [],
   "Products": [
     {
-      "ClientProductId": 1234455,
+      "ClientProductId": null,
       "Errors": [],
       "Fields": [
         {
