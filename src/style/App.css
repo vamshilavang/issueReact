@@ -112,9 +112,9 @@ label {
     display: block;
     padding: 10px;
 }
-
-div{
-    padding: 10px 0px 0px 0px;
+.answer{
+    margin-top: 10px;
+    margin-bottom: 18px;
 }
 .labelheader{
     font-weight: bold;
@@ -186,12 +186,12 @@ div{
     border-radius: 5px;
     border: 1px solid gray;
     padding: 20px;
-    margin: -25px -5px;
+    margin: -13px -5px;
 }
 
 .r-small-bottom-margin {
-    margin-bottom: 10px;
-    margin-top: -8px;
+    margin-bottom: 22px;
+    margin-top: -19px;
 }
 
 .r-small-top-margin {
@@ -255,10 +255,10 @@ input[type='radio']:checked:after {
 
 h6 {
     font-size: 12px;
-    margin-bottom: -5px !important;
+    margin-bottom: 5px !important;
 }
 .r-panel1 {
-    margin: -39px -10px;
+    margin: -12px -10px;
     padding: 10px;
     border: 1px solid #cfcfcf;
     border-radius: 5px;
@@ -320,4 +320,18 @@ h6 {
         padding-right: 27px;
     }
 
+}
+
+.p-btn {
+    margin-top: 55px;
+    margin-right: 6px;
+    text-transform: capitalize;
+    margin-bottom: 31px;
+}
+.errorMsg{
+    background-color: rgba(236, 88, 64, 0.1) !important;
+    border-color: #ec5840 !important;
+}
+.errorMsgText{
+    color: #ec5840;
 }

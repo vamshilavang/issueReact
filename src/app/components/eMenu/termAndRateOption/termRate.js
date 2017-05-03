@@ -1,5 +1,5 @@
 import React from 'react';
-import GridView from './gridView';
+import GridView from './GridView';
 
 const TermRate = (props) => {
   let data= {

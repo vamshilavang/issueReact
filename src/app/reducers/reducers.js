@@ -1,6 +1,6 @@
-export var setInitialValuesReducer = (state=initialState, action) => {
+export var setInitialValuesReducer = (state={}, action) => {
 	switch(action.type){
-		case 'SET_INITIAL_VALUES': 
+		case 'SET_INITIAL_VALUES':
 		 return action.value;
 		default:
 		 return state;

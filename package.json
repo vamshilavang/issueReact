@@ -4,8 +4,8 @@
   "description": "",
   "main": "index.js",
   "scripts": {
-    "start": "npm run build",
-    "build": "webpack -d && cpx src/index.html dist/ && cpx src/style/** dist/style && webpack-dev-server --content-base src/ --inline --hot",
+    "start": "webpack-dev-server --inline --port 6125 --host localhost --content-base .",
+    "build": "webpack -d && cpx '/index.html' 'dist/' && cpx 'src/style/**' 'dist/style' && webpack-dev-server --content-base src/ --inline --hot",
     "build:prod": "webpack -p && cpx src/index.html dist/index.html"
   },
   "author": "",
@@ -13,8 +13,16 @@
   "dependencies": {
     "axios": "^0.16.1",
     "css-loader": "^0.28.0",
+    "jquery": "^3.2.1",
+    "jquery-ui": "^1.12.1",
+    "jquery-ui-bundle": "^1.12.1",
+    "moment": "^2.18.1",
+    "react": "^15.5.4",
+    "react-datepicker": "^0.46.0",
     "react": "^15.5.4",
     "react-dom": "^15.5.4",
+    "react-redux": "^5.0.4",
+    "redux": "^3.6.0",
     "style-loader": "^0.16.1",
     "underscore": "^1.8.3"
   },
@@ -25,6 +33,8 @@
     "babel-preset-es2015": "^6.24.1",
     "babel-preset-react": "^6.24.1",
     "babel-preset-stage-2": "^6.24.1",
+    "css-loader": "^0.28.0",
+    "copyfile": "^0.1.2",
     "cpx": "^1.5.0",
     "webpack": "^2.4.1",
     "webpack-dev-server": "^2.4.4"
