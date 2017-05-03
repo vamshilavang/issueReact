@@ -47,7 +47,7 @@ const RequireProvider = (props) => {
                                                     checkExistinCaption.push(q.Caption);
                                                     showCaption = true;
                                                 } else {
-                                                    showCaption = false;
+                                                    showCaption = true;
                                                 }
                                                 return (showCaption == true && (q.ControlType != 'NA' || (q.FieldValues !== undefined )) ?
                                                     (<Question error={props.error} key={category.ClientProductId.toString() + i + 'q'} categoryName={catname} clientproductId={category.ClientProductId} data={q} qId={i + 'q'} events={props.events} />) : null)

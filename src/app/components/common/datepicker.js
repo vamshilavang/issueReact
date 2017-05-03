@@ -4,7 +4,7 @@ import moment from 'moment';
 
 const Calender = (props)=>{
     return <div className="answer" style={{ display: 'inline-block'}}>
-        <DatePicker className={"form-control" + (!props.data.isValid?' errorMsg':'')}
+        <DatePicker className={"form-control" + (props.data.isValid == false?' errorMsg':'')}
             selected={props.data.Value}
             onChange={props.events}
             maxDate={moment().add(0,"days")}
