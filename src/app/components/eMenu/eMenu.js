@@ -207,13 +207,17 @@ export default class eMenu extends Component {
                 if (Object.keys(grpResponseObj).indexOf(childitem.Category) == -1) {
                     grpResponseObj[childitem.Category] = [];
                 }
-                if (childitem.DisplayOnUI && childitem.ControlType != 'NA') {
+                if (childitem.DisplayOnUI && childitem.ControlType != 'NA' && childitem.ControlType != 'Calendar') {
                     if (childitem.FieldValues && childitem.FieldValues.length > 4) {
                         grpResponseObj[childitem.Category].push(childitem)
                     }
                     else {
                         grpResponseObj[childitem.Category].push(childitem)
                     }
+                }else if(childitem.DisplayOnUI && childitem.ControlType == 'Calendar'){
+                    if(childitem.Value)
+                    childitem.Value = moment(new Date(childitem.Value));
+                    grpResponseObj[childitem.Category].push(childitem)
                 }
             });
             RequiredFieldResponseProduct[idx]['GroupedCategory'] = grpResponseObj;
@@ -335,9 +339,9 @@ export default class eMenu extends Component {
                             return _.map(qs, function (q, i) {
                                 if (q.ControlType == 'Calendar') {
                                     q['isValid'] = true;
-                                    return q.Value = date;
+                                    return q.Value = date.toDate().toString();
                                 }
-                                if(q.ControlType != 'Calendar' && !q.isValid){
+                                if(q.ControlType != 'Calendar' && q.isValid == false){
                                     isFilled = false;
                                 }
                             })
