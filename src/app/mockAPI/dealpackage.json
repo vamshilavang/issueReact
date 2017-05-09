@@ -1,0 +1,138 @@
+
+deal": {
+"dlr_code": "",
+         	"deal_jacket_id": "",
+         	"deal_id": "",
+		deal_packages”: [ {
+		"dlr_code": "",
+         		"deal_jacket_id": "",
+         		"deal_id": "",
+		"package_name": "Platinum",
+		“position”:”3”,
+		“price”:,
+		“cost”
+		“is_package_selected”,
+		
+		Package_options”:[ {
+			"dlr_code": "",
+         		"deal_jacket_id": "",
+         			"deal_id": "",
+			“term”:””,
+			“payment”:””,
+			“position”:””,
+			“is_selected”,
+		},
+		{
+			"dlr_code": "",
+         		"deal_jacket_id": "",
+         			"deal_id": "",
+			“term”:””,
+			“payment”:””,
+			“position”:””,
+			“is_selected”,
+		},
+product": {
+         "dlr_code": "",
+         "deal_jacket_id": "",
+         "deal_id": "",
+         "prod_dlr_id": "",
+         "prod_id": "",
+         "sort_order": "",
+         "name": "",
+         "price": "",
+         "cost": "",
+         "max_price": "",
+         "min_price": "",
+         "is_rateable": "",
+         "is_taxable": "",
+         "is_contractable": "",
+         "category_cd": "",
+         "provider_cd": "",
+         "provider_name": "",
+         "term": "",
+         "miles": "",
+         "deductible": "",
+         "plan": "",
+         "program": "",
+         "coverage": "",
+         "service_int_tire_rots": "",
+         "provider_rate_level": "",
+         "required_fields": "",
+         "options": {
+            "option": {
+               "prod_id": "",
+               "option_code": "",
+               "option_desc": "",
+               "option_price": "",
+               "is_surcharge": "",
+               "is_selected": ""
+            }
+         }
+      }
+},
+{
+		"dlr_code": "",
+         		"deal_jacket_id": "",
+         		"deal_id": "",
+		"package_name": "",
+		“position”:””,
+		“price”:,
+		“cost”
+		“is_package_selected”,
+		
+		Package_options”:[ {
+			"dlr_code": "",
+         		"deal_jacket_id": "",
+         			"deal_id": "",
+			“term”:””,
+			“payment”:””,
+			“position”:””,
+			“is_selected”,
+		},
+		{
+			"dlr_code": "",
+         		"deal_jacket_id": "",
+         			"deal_id": "",
+			“term”:””,
+			“payment”:””,
+			“position”:””,
+			“is_selected”,
+		},
+product": {
+         "dlr_code": "",
+         "deal_jacket_id": "",
+         "deal_id": "",
+         "prod_dlr_id": "",
+         "prod_id": "",
+         "sort_order": "",
+         "name": "",
+         "price": "",
+         "cost": "",
+         "max_price": "",
+         "min_price": "",
+         "is_rateable": "",
+         "is_taxable": "",
+         "is_contractable": "",
+         "category_cd": "",
+         "provider_cd": "",
+         "provider_name": "",
+         "term": "",
+         "miles": "",
+         "deductible": "",
+         "plan": "",
+         "program": "",
+         "coverage": "",
+         "service_int_tire_rots": "",
+         "provider_rate_level": "",
+         "required_fields": "",
+         "options": {
+            "option": {
+               "prod_id": "",
+               "option_code": "",
+               "option_desc": "",
+               "option_price": "",
+               "is_surcharge": "",
+               "is_selected": ""
+            }
+         }
+      }
