@@ -1,4 +1,8 @@
 {
+  "deal_id": 310200000002429407,
+  "deal_jacket_id": 310200000002429406,
+  "dlr_cd": 1114616,
+  "deal_menu_json": {
   "ConsolidatedFields": [],
   "Errors": [],
   "Products": [
@@ -643,6 +647,7 @@
     "Credentials": null,
     "DTDealerId": "116627",
     "EchoData": null,
-    "RequestDate": "/Date(1493836333441-0400)/"
+    "RequestDate": "(1494273754742-0400)"
   }
+}
 }
