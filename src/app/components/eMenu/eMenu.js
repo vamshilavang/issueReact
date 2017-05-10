@@ -2,6 +2,7 @@ import React, { Component } from 'react';
 import _ from 'underscore';
 import moment from 'moment';
 
+
 import HttpHelper from '../../Helper/httpHelper';
 import RequireProvider from './reqProvider/requiredField';
 import TermRate from './termAndRateOption/termRate';
@@ -368,10 +369,10 @@ export default class eMenu extends Component {
                     :
                     null}
                 <TermRate events={this.events.eMenuOnsave}/>
-                {!this.state.saveEMenu?
+
 
                     <ProductHeading items={this.state.dealerProduct}/>
-                    :null}
+
             </div>
         );
     }
